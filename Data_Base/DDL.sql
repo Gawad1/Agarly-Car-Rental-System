@@ -1,0 +1,2 @@
+-- Active: 1702938882061@@192.168.1.103@3306@gsff
+CREATE DATABASE CarRentalSystem;
