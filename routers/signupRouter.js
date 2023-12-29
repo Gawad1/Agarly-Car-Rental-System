@@ -17,8 +17,8 @@ db.connect((err) => {
     console.log('Connected to the database');
   });
 app.post('/signup', (req, res) => {
-        const { SSN, Fname, Lname, gender, email, password, confirmpassword } = req.body;
-        if (!SSN || !Fname || !Lname || !gender || !email || !password || !confirmpassword) {
+        const { SSN, Fname, Lname, gender, email, password, confirmpassword, date } = req.body;
+        if (!SSN || !Fname || !Lname || !gender || !email || !password || !confirmpassword ||!date) {
           return res.status(400).json({ message: 'All fields are required' });
         }
       
@@ -28,8 +28,8 @@ app.post('/signup', (req, res) => {
         }
       
         // Insert user data into the database
-        const insertQuery = 'INSERT INTO Customer (ssn, f_name, l_name, gender, email, pass) VALUES (?, ?, ?, ?, ?, ?)';
-        db.query(insertQuery, [SSN, Fname, Lname, gender, email, password], (err, results) => {
+        const insertQuery = 'INSERT INTO Customer (ssn, f_name, l_name, gender, email, pass, b_d) VALUES (?, ?, ?, ?, ?, ?)';
+        db.query(insertQuery, [SSN, Fname, Lname, gender, email, password, date], (err, results) => {
           if (err) {
             console.error('Error inserting into the database:', err);
             return res.status(500).json({ message: 'Internal Server Error' });
