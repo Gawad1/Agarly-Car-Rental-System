@@ -1,31 +1,49 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const mysql = require('mysql2');
 const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
 
-// Sample user data (replace this with a database in a real-world scenario)
-const users = [
-  {
-    username: 'john',
-    password: 'password',
-  },
-];
+// Create a connection to the MySQL database
+const db = mysql.createConnection({
+  host: '192.168.1.103',
+  user: 'usera',
+  password: 'passa',
+  database: 'gsff',
+});
+
+// Connect to the database
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+    return;
+  }
+  console.log('Connected to the database');
+});
 
 app.post('/signin', (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  // Find the user by username
-  const user = users.find((u) => u.username === username);
+  // Query the database to find the user by email
+  const query = 'SELECT * FROM customer WHERE email = ?';
+  db.query(query, [email], (err, results) => {
+    if (err) {
+      console.error('Error querying the database:', err);
+      res.status(500).json({ message: 'Internal Server Error' });
+      return;
+    }
 
-  // Check if the user exists and the password is correct
-  if (user && user.password === password) {
-    res.json({ message: 'Sign-in successful' });
-  } else {
-    res.status(401).json({ message: 'Invalid credentials' });
-  }
+    // Check if the user exists and the password is correct
+    const user = results[0];
+    console.log(results);
+    if (user && user.pass === password) {
+      res.json({ message: 'Sign-in successful' });
+    } else {
+      res.status(401).json({ message: 'Invalid credentials' });
+    }
+  });
 });
 
 app.listen(port, () => {
