@@ -8,9 +8,9 @@ app.use(bodyParser.json());
 
 // Create a connection to the MySQL database
 const db = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "root",
-  password: "",
+  host: "192.168.1.8",
+  user: "usera",
+  password: "passa",
   database: "gsff",
 });
 
