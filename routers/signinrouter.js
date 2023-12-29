@@ -23,12 +23,12 @@ db.connect((err) => {
   console.log('Connected to the database');
 });
 
-app.post('/signin', (req, res) => {
+app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
   // Query the database to find the user by email
-  const query = 'SELECT * FROM customer WHERE email = ?';
-  db.query(query, [email], (err, results) => {
+  const query = 'SELECT * FROM customer WHERE email = ? AND pass = ?';
+  db.query(query, [email,password], (err, results) => {
     if (err) {
       console.error('Error querying the database:', err);
       res.status(500).json({ message: 'Internal Server Error' });
@@ -37,9 +37,8 @@ app.post('/signin', (req, res) => {
 
     // Check if the user exists and the password is correct
     const user = results[0];
-    console.log(results);
     if (user && user.pass === password) {
-      res.json({ message: 'Sign-in successful' });
+      res.json({ message: 'Login successful' });
     } else {
       res.status(401).json({ message: 'Invalid credentials' });
     }
