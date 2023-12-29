@@ -55,3 +55,18 @@ CREATE TABLE reservation (
 );
 
 
+-- Creating a trigger to update n_cars in the office table after a new car is inserted
+DELIMITER //
+
+CREATE TRIGGER after_car_insert
+AFTER INSERT ON car
+FOR EACH ROW
+BEGIN
+    UPDATE office
+    SET n_cars = n_cars + 1
+    WHERE office_id = NEW.office_id;
+END;
+
+//
+
+DELIMITER ;
