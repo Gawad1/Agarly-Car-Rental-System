@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
 
 const app = express();
 const port = 3000;
@@ -11,7 +10,7 @@ app.use(bodyParser.json());
 const users = [
   {
     username: 'john',
-    passwordHash: '22', // bcrypt hash of "password"
+    password: 'password',
   },
 ];
 
@@ -22,7 +21,7 @@ app.post('/signin', (req, res) => {
   const user = users.find((u) => u.username === username);
 
   // Check if the user exists and the password is correct
-  if (user && bcrypt.compareSync(password, user.passwordHash)) {
+  if (user && user.password === password) {
     res.json({ message: 'Sign-in successful' });
   } else {
     res.status(401).json({ message: 'Invalid credentials' });
