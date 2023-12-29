@@ -20,13 +20,8 @@ db.connect((err) => {
     }
     console.log('Connected to the database');
   });
-
-  app.post('/signup', (req, res) => {
-    const {SSN, Fname, Lname,gender,  email, password,confirmpassword } = req.body;
-    app.post('/signup', (req, res) => {
+app.post('/signup', (req, res) => {
         const { SSN, Fname, Lname, gender, email, password, confirmpassword } = req.body;
-      
-        
         if (!SSN || !Fname || !Lname || !gender || !email || !password || !confirmpassword) {
           return res.status(400).json({ message: 'All fields are required' });
         }
@@ -47,10 +42,8 @@ db.connect((err) => {
           console.log('User signed up successfully');
           res.json({ message: 'Sign-up successful' });
         });
-      });
+});
       
-      app.listen(port, () => {
-        console.log(`Server is running on http://localhost:${port}`);
-      });
-         
-  })
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});

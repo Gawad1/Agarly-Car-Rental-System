@@ -21,7 +21,7 @@ db.connect((err) => {
     console.log('Connected to the database');
   });
 app.post('/deletecar',(req,res) =>{
-    const {SSN, Fname, Lname,gender,  email, password,confirmpassword, } = req.body
+    const {plate_id } = req.body
 })
 
   app.listen(port, () => {
