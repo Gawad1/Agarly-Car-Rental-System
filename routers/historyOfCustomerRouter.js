@@ -1,3 +1,4 @@
+const dbConfig = require('./dbConfig');
 const express = require("express");
 const bodyParser = require("body-parser");
 const mysql = require("mysql2");
@@ -7,13 +8,7 @@ const port = 3000;
 app.use(bodyParser.json());
 
 // Create a connection to the MySQL database
-const db = mysql.createConnection({
-  host: "192.168.1.8",
-  user: "usera",
-  password: "passa",
-  database: "gsff",
-});
-
+const db = mysql.createConnection(dbConfig);
 // Connect to the database
 db.connect((err) => {
   if (err) {
