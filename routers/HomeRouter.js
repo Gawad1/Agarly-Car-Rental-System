@@ -2,16 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.use(bodyParser.json());
 
 // Create a connection to the MySQL database
 const db = mysql.createConnection({
-  host: '192.168.1.103',
-  user: 'usera',
-  password: 'passa',
-  database: 'gsff',
+  host: '127.0.0.1',
+  user: 'root',
+  password: '@Feezo139',
+   database: 'carrentalsystem',
 });
 
 // Connect to the database
