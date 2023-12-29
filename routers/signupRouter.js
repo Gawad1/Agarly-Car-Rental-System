@@ -22,7 +22,7 @@ db.connect((err) => {
   });
 
   app.post('/signup', (req, res) => {
-    const {SSN, Fname, Lname,gender,  email, password,confirmpassword, } = req.body;
+    const {SSN, Fname, Lname,gender,  email, password,confirmpassword } = req.body;
     app.post('/signup', (req, res) => {
         const { SSN, Fname, Lname, gender, email, password, confirmpassword } = req.body;
       
