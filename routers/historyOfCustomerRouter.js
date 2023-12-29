@@ -36,7 +36,7 @@ app.post("/historyOfCustomer", (req, res) => {
     if (log) {
       res.json({ message: results });
     } else {
-      res.status(401).json({ message: "No cars found" });
+      res.status(401).json({ message: "No History found" });
     }
   });
 });
