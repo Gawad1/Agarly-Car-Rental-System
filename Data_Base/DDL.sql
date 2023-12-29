@@ -1,4 +1,4 @@
--- Active: 1702935863877@@127.0.0.1@3306@gsff
+-- Active: 1702937788995@@192.168.1.8@3306@gsff
 
 CREATE TABLE customer (
     ssn INT PRIMARY KEY,
@@ -76,5 +76,12 @@ BEGIN
 END;
 
 //
+CREATE TABLE servicelog (
+    service_id INT AUTO_INCREMENT PRIMARY KEY,
+    plate_id INT NOT NULL,
+    start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    end_date TIMESTAMP NULL DEFAULT NULL,
+    CONSTRAINT fk_service_car FOREIGN KEY (plate_id) REFERENCES car(plate_id)
+);
 
 DELIMITER ;
