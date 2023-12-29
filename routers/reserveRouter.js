@@ -68,7 +68,6 @@ app.post("/reserveRouter", (req, res) => {
           res.status(500).json({ message: "Error inserting into the database:" });
           return;
         }
-  
         res.json({ message: "Reservation added successfully" });
       });
     });
