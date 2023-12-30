@@ -54,4 +54,4 @@ const resPerCar = (db) => {
     return router;
   };
   
-  module.exports = carInsert;
+  module.exports = resPerCar;

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 // const carRouter = require('./routers/CarPage');
 const homeRouter = require('./routers/HomeRouter');
 const carInsert = require('./routers/CarInsert');
+const resPerCar = require('./routers/resPerCar');
 const mysql = require('mysql2');
 const dbConfig = require('./routers/dbConfig');
 
@@ -28,6 +29,7 @@ db.connect((err) => {
 // app.use('/car', carRouter(db));
  app.use('/home', homeRouter(db)); 
 app.use('/carinsert', carInsert(db));
+app.use('/resPerCar', resPerCar(db));
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
