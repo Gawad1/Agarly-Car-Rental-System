@@ -1,24 +1,8 @@
-const dbConfig = require("./dbConfig");
-const express = require("express");
-const bodyParser = require("body-parser");
-const mysql = require("mysql2");
-const app = express();
-const port = 3001;
+const express = require('express');
+const router = express.Router();
 
-app.use(bodyParser.json());
-
-// Create a connection to the MySQL database
-const db = mysql.createConnection(dbConfig);
-
-// Connect to the database
-db.connect((err) => {
-  if (err) {
-    console.error("Error connecting to the database:", err);
-    return;
-  }
-  console.log("Connected to the database");
-});
-app.post("/reserveRouter", (req, res) => {
+const reserverouter = (db) => {
+  router.post("/", (req, res) => {
     const {
       ssn,
       plate_id,
@@ -42,7 +26,7 @@ app.post("/reserveRouter", (req, res) => {
         AND plate_id = ?
     `;
   
-    const overlapCheckParams = [pickup_date, pickup_date, return_date, return_date, pickup_date, return_date,plate_id];
+    const overlapCheckParams = [pickup_date, pickup_date, return_date, return_date, pickup_date, return_date, plate_id];
   
     db.query(overlapCheckSql, overlapCheckParams, (err, overlapResults) => {
       if (err) {
@@ -73,8 +57,8 @@ app.post("/reserveRouter", (req, res) => {
       });
     });
   });
-
-  app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-  });
+  return router;
+  
+};
+module.exports = reserverouter;
   

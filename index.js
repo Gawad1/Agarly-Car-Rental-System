@@ -10,10 +10,12 @@ const carpage = require('./routers/CarPage');
 const resPerCar = require('./routers/resPerCar');
 const deletecar = require('./routers/deletecarRouter');
 const histOfCustomer = require('./routers/historyOfCustomerRouter');
+const reserverouter = require('./routers/reserveRouter');
 
 
 const mysql = require('mysql2');
 const dbConfig = require('./routers/dbConfig');
+
 
 
 
@@ -42,6 +44,7 @@ app.use('/resPerCar', resPerCar(db));
 app.use('/showcar', carpage(db));
 app.use('/deletecar', deletecar(db));
 app.use('/historyOfCustomer', histOfCustomer(db));
+app.use('/reserveRouter', reserverouter(db));
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
