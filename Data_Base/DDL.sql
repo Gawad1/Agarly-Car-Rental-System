@@ -75,7 +75,7 @@ BEGIN
     WHERE office_id = NEW.office_id;
 END;
 
-//
+
 CREATE TABLE servicelog (
     service_id INT AUTO_INCREMENT PRIMARY KEY,
     plate_id INT NOT NULL,
