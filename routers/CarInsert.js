@@ -1,3 +1,4 @@
+const dbConfig = require('./dbConfig');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
@@ -7,21 +8,8 @@ const port = 3001;
 app.use(bodyParser.json());
 
 // Create a connection to the MySQL database
-const db = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  password: '@Feezo139',
-  database: 'carrentalsystem',
-});
-
+const db = mysql.createConnection(dbConfig);
 // Connect to the database
-db.connect((err) => {
-  if (err) {
-    console.error('Error connecting to the database:', err);
-    return;
-  }
-  console.log('Connected to the database');
-});
 
 // Define a route for inserting a new car (POST request)
 app.post('/car', (req, res) => {
