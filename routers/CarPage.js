@@ -21,28 +21,46 @@ app.get('/car/:plateId', (req, res) => {
   const plateId = req.params.plateId;
 
   // Use the plateId in your database query
-  const query = 'SELECT * FROM car WHERE plate_id = ?';
-
+  //const query = 'SELECT * FROM car WHERE plate_id = ?';
+  const query = `
+  SELECT car.*, reservation.pickup_date, reservation.return_date
+  FROM car  LEFT JOIN reservation ON car.plate_id = reservation.plate_id
+  where car.plate_id =1;
+`;
   db.query(query, [plateId], (err, result) => {
     if (err) {
-      console.error('Error retrieving car data', err);
-      res.status(500).json({ message: 'Internal Server Error' });
+      res.status(500).json({ message: 'Error retrieving car data' });
       return;
     }
-
+    console.log(plateId);
     if (result.length === 0) {
       res.status(404).json({ message: 'Car not found' });
       return;
     }
 
-    res.json(result[0]); // Assuming you want to send back the first matching car (if multiple found)
+    const carSpecs = {
+      plate_id: result[0].plate_id,
+      model: result[0].model,
+      production_year: result[0].production_year,
+      color: result[0].color,
+      photo: result[0].photo,
+      category: result[0].category,
+      class_id: result[0].class_id,
+      office_id: result[0].office_id,
+      status: result[0].status,
+    };
+    const reservations = result.map((reservation) => ({
+      pickup_date: reservation.pickup_date,
+      return_date: reservation.return_date,
+    }));
+    const output = {
+      car_specs: carSpecs,
+      reservations: reservations,
+    };
+
+    res.json(output); // Assuming you want to send back the first matching car (if multiple found)
   });
 });
-
-    
-   
-    
-
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
