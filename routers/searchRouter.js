@@ -21,7 +21,7 @@ db.connect((err) => {
 app.post("/searchRouter", (req, res) => {
   const { color, model, category, class_id,office_id } = req.body;
   const params = [];
-  let sql = "SELECT * FROM car WHERE 1";
+  let sql = "SELECT * FROM car WHERE status != 'NA' ";
 
   if (color) {
     sql += " AND color = ?";

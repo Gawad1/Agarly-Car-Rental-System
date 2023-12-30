@@ -42,34 +42,38 @@ app.post('/altercar', (req, res) => {
           console.error('Error inserting into the database:', err);
           return res.status(500).json({ message: 'Internal Server Error' });
         }
-      });
 
-      const updateStatusQuery = 'UPDATE car SET Status = ? WHERE Plate_id = ?';
-      const newStatus = 'Out-Of-Service';
-      db.query(updateStatusQuery, [newStatus, plate_id], (err) => {
-        if (err) {
-          console.error('Error updating car status:', err);
-          return res.status(500).json({ message: 'Internal Server Error' });
-        }
+        const updateCarStatusQuery = 'UPDATE car SET Status = ? WHERE Plate_id = ?';
+        const newCarStatus = 'Out-Of-Service';
+        db.query(updateCarStatusQuery, [newCarStatus, plate_id], (err) => {
+          if (err) {
+            console.error('Error updating car status:', err);
+            return res.status(500).json({ message: 'Internal Server Error' });
+          }
+
+          res.json({ message: 'Car entered and status updated successfully' });
+        });
       });
     } else if (action === 'exit') {
-      const updateCarQuery = 'UPDATE car SET Status = ? WHERE Plate_id = ?';
-      const newStatus = 'active';
-      db.query(updateCarQuery, [newStatus, plate_id], (err) => {
+      const updateCarStatusQuery = 'UPDATE car SET Status = ? WHERE Plate_id = ?';
+      const newCarStatus = 'active';
+      db.query(updateCarStatusQuery, [newCarStatus, plate_id], (err) => {
         if (err) {
           console.error('Error updating car status:', err);
           return res.status(500).json({ message: 'Internal Server Error' });
         }
-      });
 
-      const updateStatusQuery = 'UPDATE servicelog SET end_date = ? WHERE Plate_id = ?';
-      const currentDate = new Date();
-      db.query(updateStatusQuery, [currentDate, plate_id], (err) => {
-        if (err) {
-          console.error('Error updating car status:', err);
-          return res.status(500).json({ message: 'Internal Server Error' });
-        }
-      });
+        const updateServiceLogQuery = 'UPDATE servicelog SET end_date = ? WHERE Plate_id = ?';
+        const currentDate = new Date();
+        db.query(updateServiceLogQuery, [currentDate, plate_id], (err) => {
+          if (err) {
+            console.error('Error updating service log:', err);
+            return res.status(500).json({ message: 'Internal Server Error' });
+          }
+
+          res.json({ message: 'Car exited, status updated, and service log updated successfully' });
+        });
+      }); 
     }
   });
 });
