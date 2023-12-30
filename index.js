@@ -1,8 +1,13 @@
 // app.js (main application)
 const express = require('express');
 const bodyParser = require('body-parser');
+const mysql = require('mysql2');
+const dbConfig = require('./routers/dbConfig');
+const app = express();
+app.use(bodyParser.json());
+const port = 3001;
 
-// const carRouter = require('./routers/CarPage');
+
 const homeRouter = require('./routers/HomeRouter');
 const carInsert = require('./routers/CarInsert');
 const loginfunction = require('./routers/LoginRouter');
@@ -16,16 +21,7 @@ const signupRouter = require('./routers/signupRouter');
 const altercarRouter = require('./routers/altercarRouter');
 
 
-const mysql = require('mysql2');
-const dbConfig = require('./routers/dbConfig');
 
-
-
-
-const app = express();
-const port = 3001;
-
-app.use(bodyParser.json());
 
 // Create a single database connection
 const db = mysql.createConnection(dbConfig);
@@ -40,7 +36,7 @@ db.connect((err) => {
 
 // Pass the database connection to routers
 // app.use('/car', carRouter(db));
- app.use('/home', homeRouter(db)); 
+app.use('/home', homeRouter(db)); 
 app.use('/insertcar', carInsert(db));
 app.use('/login', loginfunction(db));
 app.use('/resPerCar', resPerCar(db));
