@@ -5,13 +5,16 @@ const bodyParser = require('body-parser');
 // const carRouter = require('./routers/CarPage');
 const homeRouter = require('./routers/HomeRouter');
 const carInsert = require('./routers/CarInsert');
-<<<<<<< HEAD
 const loginfunction = require('./routers/LoginRouter');
-=======
+const carpage = require('./routers/CarPage');
 const resPerCar = require('./routers/resPerCar');
->>>>>>> 680fe7d5678085dedfae8923412d4804dc7f557e
+const deletecar = require('./routers/deletecarRouter');
+const histOfCustomer = require('./routers/historyOfCustomerRouter');
+
+
 const mysql = require('mysql2');
 const dbConfig = require('./routers/dbConfig');
+
 
 
 const app = express();
@@ -33,12 +36,12 @@ db.connect((err) => {
 // Pass the database connection to routers
 // app.use('/car', carRouter(db));
  app.use('/home', homeRouter(db)); 
-app.use('/carinsert', carInsert(db));
-<<<<<<< HEAD
+app.use('/insertcar', carInsert(db));
 app.use('/login', loginfunction(db));
-=======
 app.use('/resPerCar', resPerCar(db));
->>>>>>> 680fe7d5678085dedfae8923412d4804dc7f557e
+app.use('/showcar', carpage(db));
+app.use('/deletecar', deletecar(db));
+app.use('/historyOfCustomer', histOfCustomer(db));
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

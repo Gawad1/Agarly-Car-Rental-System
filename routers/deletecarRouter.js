@@ -1,22 +1,12 @@
-const dbConfig = require('./dbConfig');
 const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require('mysql2');
-const app = express();
-const port = 3000;
+const router = express.Router();
+const deletecar = (db) => {
+ 
 
-app.use(bodyParser.json());
+  // Create a connection to the MySQL database
+  
 
-// Create a connection to the MySQL database
-const db = mysql.createConnection(dbConfig);
-db.connect((err) => {
-    if (err) {
-      console.error('Error connecting to the database:', err);
-      return;
-    }
-    console.log('Connected to the database');
-  });
-  app.post('/deletecar', (req, res) => {
+  router.post('/', (req, res) => {
     const { plate_id } = req.body;
     
   
@@ -34,7 +24,7 @@ db.connect((err) => {
       }
   
       // If the data exists, update the status of the car to indicate that it is no longer active
-        const updateStatusQuery = 'UPDATE Car SET Status = ? WHERE Plate_id = ?';
+      const updateStatusQuery = 'UPDATE Car SET Status = ? WHERE Plate_id = ?';
       const newStatus = 'NA'; // You can choose an appropriate status
       db.query(updateStatusQuery, [newStatus, plate_id], (err) => {
         if (err) {
@@ -47,9 +37,10 @@ db.connect((err) => {
       });
     });
   });
-  
-  
 
-  app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+  return router;
+};
+  
+module.exports = deletecar;
+
+  
