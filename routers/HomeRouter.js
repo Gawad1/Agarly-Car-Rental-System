@@ -1,47 +1,25 @@
-const dbConfig = require('./dbConfig');
+
+// homeRouter.js
 const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require('mysql2');
-const app = express();
-const port = 3001;
+const router = express.Router();
 
+// Accept the database connection as a parameter
+const homeRouter = (db) => {
+  router.get('/', (req, res) => {
+    const query = 'SELECT * FROM car where status!="NA" ';
 
-app.use(bodyParser.json());
-
-// Create a connection to the MySQL database
-const db = mysql.createConnection(dbConfig);
-
-
-// Connect to the database
-db.connect((err) => {
-  if (err) {
-    console.error('Error connecting to the database:', err);
-    return;
-  }
-  console.log('Connected to the database');
-});
-
-app.get('/home', (req, res) => {
-    const query = 'SELECT * FROM car ';
-    db.query(query, (err, result) =>
-    {
-        if (err)
+    db.query(query, (err, result) => {
+      if (err)
         {
             console.error('Error loading home page', err);
             res.status(500).json({ message: 'Internal Server Error' });
             return;
         }
-        res.json(result);
-        
-    })
+        res.json(result);// ... (rest of the code)
+    });
+  });
 
-   
+  return router;
+};
 
-})
-    
-   
-    
-
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+module.exports = homeRouter;
