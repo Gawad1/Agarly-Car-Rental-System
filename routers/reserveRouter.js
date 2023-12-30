@@ -36,12 +36,13 @@ app.post("/reserveRouter", (req, res) => {
     // Check for overlapping reservations
     const overlapCheckSql = `
       SELECT * FROM reservation
-      WHERE (? <= pickup_date AND ? >= return_date)
+      WHERE ((? <= pickup_date AND ? >= return_date)
         OR (? >= pickup_date AND ? <= return_date)
-        OR (? < pickup_date AND ? > return_date)
+        OR (? < pickup_date AND ? > return_date))
+        AND plate_id = ?
     `;
   
-    const overlapCheckParams = [pickup_date, pickup_date, return_date, return_date, pickup_date, return_date];
+    const overlapCheckParams = [pickup_date, pickup_date, return_date, return_date, pickup_date, return_date,plate_id];
   
     db.query(overlapCheckSql, overlapCheckParams, (err, overlapResults) => {
       if (err) {
