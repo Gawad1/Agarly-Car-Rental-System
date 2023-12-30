@@ -18,6 +18,7 @@ db.connect((err) => {
   });
   app.post('/deletecar', (req, res) => {
     const { plate_id } = req.body;
+    
   
     // Check if the plate_id exists in the database
     const checkQuery = 'SELECT * FROM Car WHERE Plate_id = ?';
@@ -33,7 +34,7 @@ db.connect((err) => {
       }
   
       // If the data exists, update the status of the car to indicate that it is no longer active
-      const updateStatusQuery = 'UPDATE Car SET Status = ? WHERE Plate_id = ?';
+        const updateStatusQuery = 'UPDATE Car SET Status = ? WHERE Plate_id = ?';
       const newStatus = 'NA'; // You can choose an appropriate status
       db.query(updateStatusQuery, [newStatus, plate_id], (err) => {
         if (err) {
