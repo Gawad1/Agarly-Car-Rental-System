@@ -13,6 +13,7 @@ const histOfCustomer = require('./routers/historyOfCustomerRouter');
 const reserverouter = require('./routers/reserveRouter');
 const searchRouter = require('./routers/searchRouter');
 const signupRouter = require('./routers/signupRouter');
+const altercarRouter = require('./routers/altercarRouter');
 
 
 const mysql = require('mysql2');
@@ -49,6 +50,7 @@ app.use('/historyOfCustomer', histOfCustomer(db));
 app.use('/reserveRouter', reserverouter(db));
 app.use('/searchRouter', searchRouter(db));
 app.use('/signup', signupRouter(db));
+app.use('/altercar', altercarRouter(db));
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
