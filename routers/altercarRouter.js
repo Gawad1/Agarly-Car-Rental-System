@@ -24,7 +24,7 @@ app.post('/altercar', (req, res) => {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
-  const checkQuery = 'SELECT * FROM Car WHERE Plate_id = ?';
+  const checkQuery = 'SELECT * FROM Car WHERE Plate_id = ? ';
   db.query(checkQuery, [plate_id], (err, results) => {
     if (err) {
       console.error('Error querying the database:', err);

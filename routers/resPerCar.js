@@ -22,17 +22,17 @@ const resPerCar = (db) => {
         query = `
           SELECT *
           FROM reservation
-          INNER JOIN car ON reservation.plate_id = car.plate_id
-          INNER JOIN customer ON reservation.customer_id = customer.customer_id
-          WHERE reservation.pickup_date BETWEEN ? AND ?
+          JOIN car ON reservation.plate_id = car.plate_id
+          JOIN customer ON reservation.ssn = customer.ssn
+          WHERE reservation.res_date BETWEEN ? AND ?
         `;
       } else if (reportType === 'ReservationsCar') {
         // Query to get all reservations of any car within a specified period with car information
         query = `
           SELECT *
           FROM reservation
-          INNER JOIN car ON reservation.plate_id = car.plate_id
-          WHERE reservation.pickup_date BETWEEN ? AND ?
+          JOIN car ON reservation.plate_id = car.plate_id
+          WHERE reservation.res_date BETWEEN ? AND ?
         `;
       } else {
         res.status(400).json({ message: 'Invalid report type' });
