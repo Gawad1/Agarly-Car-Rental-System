@@ -1,14 +1,16 @@
 // src/App.tsx
 import React from 'react';
-import LoginPage from './LoginPage.tsx';
+import Home from './Home.tsx';
+import './Home.css';
+
 
 const App: React.FC = () => {
   return (
     <div>
       <h1>My React TypeScript App</h1>
-      <LoginPage />
+      <Home />
     </div>
   );
 };
 
-export default App;
+export default App;
