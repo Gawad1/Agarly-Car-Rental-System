@@ -5,6 +5,7 @@ const mysql = require('mysql2');
 const dbConfig = require('./routers/dbConfig');
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 const port = 3001;
 
 
