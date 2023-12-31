@@ -17,12 +17,29 @@ const LoginPage: React.FC = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your login logic here, e.g., make an API call with the formData
-    console.log('Login form submitted:', formData);
-  };
+    
+    try {
+      const response = await fetch('http://localhost:3001/login}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
+      if (response.ok) {
+        // Successful login, you can redirect or perform other actions
+        console.log('Login successful!');
+      } else {
+        // Handle unsuccessful login (e.g., display an error message)
+        console.error('Login failed:', await response.text());
+      }
+    } catch (error) {
+      console.error('Error during login:', error.message);
+    }
+  };
   return (
     <div>
       <h2>Login Page</h2>
