@@ -1,15 +1,14 @@
-// src/App.tsx
-import React from 'react';
-import Login from './LoginPage.tsx';
+// App.tsx
 
+import React from 'react';
+import CarList from './HomePage.tsx';
 
 const App: React.FC = () => {
   return (
     <div>
-      <h1>My React TypeScript App</h1>
-      <Login />
+      <CarList />
     </div>
   );
 };
 
-export default App;
+export default App;
