@@ -1,4 +1,4 @@
--- Active: 1698396764187@@localhost@3308@carrentalsystem
+-- Active: 1698862639619@@127.0.0.1@3306@gsff
 
 CREATE TABLE customer (
     ssn INT PRIMARY KEY,
@@ -16,20 +16,6 @@ create table office (
     n_cars int 
 )
 
-drop table class;
-drop table office;
-alter table car
-drop CONSTRAINT fk_car_class;
-
--- Drop the existing check constraint on the 'category' column
-
-
--- Add the corrected check constraint on the 'category' column
-ALTER TABLE car
-ADD CONSTRAINT `car.category` CHECK (category IN ('SUV', 'Sedan', 'CrossOver', 'Mini_Van'));
-
-
-drop table car;
 
 create table car (
 plate_id int primary key,
@@ -40,7 +26,7 @@ photo varchar(255) ,
 category varchar(10) check (category in ('SUV','Sedan','CrossOver','Mini_Van')),
 class_id varchar(15) check (class_id in ('Economy','Mid-Range','Luxury')),
 office_id int not null,
-`status` varchar(15) check (`status` in ('Rented','Pending','Out-Of-Service','Active')),
+`status` varchar(15) check (`status` in ('Rented','Pending','Out-Of-Service','Active','NA')),
 Constraint fk_car_class 
 Foreign Key (class_id) REFERENCES class(class_id),
 constraint fk_car_office 
@@ -53,13 +39,6 @@ create table class
     class_id varchar(15) PRIMARY key  check (class_id in ('Economy','Mid-Range','Luxury')),
     rate double not null
 )
-
-GRANT ALL PRIVILEGES ON your_database_name.* TO 'root'@'localhost' IDENTIFIED BY '@Feezo139';
-FLUSH PRIVILEGES;
-
-REPAIR TABLE db;
-
-USE carrentalsystem;
 
 
 
@@ -74,6 +53,14 @@ CREATE TABLE reservation (
     CONSTRAINT fk_reservation_customer FOREIGN KEY (ssn) REFERENCES customer(ssn),
     CONSTRAINT fk_reservation_car FOREIGN KEY (plate_id) REFERENCES car(plate_id)
 );
+CREATE TABLE servicelog (
+    service_id INT AUTO_INCREMENT PRIMARY KEY,
+    plate_id INT NOT NULL,
+    start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    end-date TIMESTAMP ,
+    CONSTRAINT fk_service_car FOREIGN KEY (plate_id) REFERENCES car(plate_id)
+);
+
 
 
 -- Creating a trigger to update n_cars in the office table after a new car is inserted
@@ -88,6 +75,13 @@ BEGIN
     WHERE office_id = NEW.office_id;
 END;
 
-//
+
+CREATE TABLE servicelog (
+    service_id INT AUTO_INCREMENT PRIMARY KEY,
+    plate_id INT NOT NULL,
+    start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    end_date TIMESTAMP NULL DEFAULT NULL,
+    CONSTRAINT fk_service_car FOREIGN KEY (plate_id) REFERENCES car(plate_id)
+);
 
 DELIMITER ;
