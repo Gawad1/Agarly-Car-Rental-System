@@ -1,7 +1,11 @@
 const express = require('express');
+const cors = require('cors'); // Import the cors middleware
 const router = express.Router();
 
 const LoginRouter = (db) => {
+  // Use cors middleware before handling routes
+  router.use(cors());
+
   router.post('/', (req, res) => {
     const { email, password } = req.body;
 
@@ -24,7 +28,7 @@ const LoginRouter = (db) => {
     });
   });
 
-  return router; // Return the router instance
+  return router;
 };
 
 module.exports = LoginRouter;

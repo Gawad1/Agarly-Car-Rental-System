@@ -6,7 +6,8 @@ const dbConfig = require('./routers/dbConfig');
 const app = express();
 app.use(bodyParser.json());
 const port = 3001;
-
+const cors = require('cors');
+app.use(cors());
 
 const homeRouter = require('./routers/HomeRouter');
 const carInsert = require('./routers/CarInsert');

@@ -2,13 +2,13 @@
 import React, { useState } from 'react';
 
 interface LoginForm {
-  username: string;
+  email: string;
   password: string;
 }
 
 const LoginPage: React.FC = () => {
   const [formData, setFormData] = useState<LoginForm>({
-    username: '',
+    email: '',
     password: '',
   });
 
@@ -19,9 +19,9 @@ const LoginPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
-      const response = await fetch('http://localhost:3001/login}', {
+      const response = await fetch('http://localhost:3001/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,26 +30,31 @@ const LoginPage: React.FC = () => {
       });
 
       if (response.ok) {
-        // Successful login, you can redirect or perform other actions
-        console.log('Login successful!');
+        // Assuming the server responds with JSON data
+        const data = await response.json();
+
+        // Check for success in the data or perform further actions
+        console.log('Login successful!', data);
       } else {
         // Handle unsuccessful login (e.g., display an error message)
-        console.error('Login failed:', await response.text());
+        const errorText = await response.text();
+        console.error('Login failed:', errorText);
       }
     } catch (error) {
       console.error('Error during login:', error.message);
     }
   };
+
   return (
     <div>
       <h2>Login Page</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          Username:
+          email:
           <input
             type="text"
-            name="username"
-            value={formData.username}
+            name="email"
+            value={formData.email}
             onChange={handleInputChange}
           />
         </label>
