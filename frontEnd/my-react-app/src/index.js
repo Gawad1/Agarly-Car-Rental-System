@@ -4,6 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './app.tsx';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
