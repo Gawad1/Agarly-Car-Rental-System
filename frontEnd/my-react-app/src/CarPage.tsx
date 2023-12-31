@@ -27,7 +27,6 @@ const CarPage: React.FC<{ plateId: string }> = ({ plateId }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(`http://localhost:3001/showcar/${plateId}`);
-        console.log(response);
         if (response.ok) {
           const data = await response.json();
           setCarData(data);
@@ -57,7 +56,11 @@ const CarPage: React.FC<{ plateId: string }> = ({ plateId }) => {
       <h2>Car Details</h2>
       <p>Plate ID: {carData.car_specs.plate_id}</p>
       <p>Model: {carData.car_specs.model}</p>
+      <p>Production Year: {carData.car_specs.production_year}</p>
+      <p>Color: {carData.car_specs.color}</p>
+      <p>Category: {carData.car_specs.category}</p>
       {/* Add other car details here */}
+      <img src={carData.car_specs.photo} alt={`Car ${carData.car_specs.plate_id}`} />
       <h3>Reservations</h3>
       <ul>
         {carData.reservations.map((reservation, index) => (

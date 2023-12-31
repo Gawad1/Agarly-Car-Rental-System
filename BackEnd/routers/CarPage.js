@@ -11,7 +11,7 @@ const carpage = (db) => {
     const query = `
   SELECT car.*, reservation.pickup_date, reservation.return_date
   FROM car  LEFT JOIN reservation ON car.plate_id = reservation.plate_id
-  where car.plate_id =1;
+  where car.plate_id =?;
 `;
     db.query(query, [plateId], (err, result) => {
       if (err) {
