@@ -1,12 +1,12 @@
 // src/App.tsx
 import React from 'react';
-import LoginPage from './LoginPage.tsx';
+import SignupPage from './SignupPage.tsx';
 
 const App: React.FC = () => {
   return (
     <div>
       <h1>My React TypeScript App</h1>
-      <LoginPage />
+      <SignupPage />
     </div>
   );
 };
