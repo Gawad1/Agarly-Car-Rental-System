@@ -1,0 +1,42 @@
+/* styles.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+.login-link {
+  float: right;
+  color: #fff;
+  text-decoration: none;
+}
+
+.car-container {
+  margin-top: 20px;
+}
+
+.car {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.search-bar {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Add more styles as needed */

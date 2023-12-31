@@ -6,7 +6,7 @@ const dbConfig = require('./routers/dbConfig');
 const app = express();
 app.use(bodyParser.json());
 const port = 3001;
-
+const cors = require('cors');
 
 const homeRouter = require('./routers/HomeRouter');
 const carInsert = require('./routers/CarInsert');
@@ -36,6 +36,7 @@ db.connect((err) => {
 
 // Pass the database connection to routers
 // app.use('/car', carRouter(db));
+app.use(cors());
 app.use('/home', homeRouter(db)); 
 app.use('/insertcar', carInsert(db));
 app.use('/login', loginfunction(db));
