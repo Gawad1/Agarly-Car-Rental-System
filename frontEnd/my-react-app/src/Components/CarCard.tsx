@@ -1,7 +1,7 @@
 // CarCard.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './CarCard.css'; // Import the CSS file
+import '../Styling/CarCard.css'; // Import the CSS file
 
 interface CarCardProps {
   car: {
@@ -22,7 +22,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => (
       <p>{`Year: ${car.production_year}`}</p>
       <p>{`Category: ${car.category}`}</p>
       <Link to={`/showcar/${car.plate_id}`}>
-        <button className="btn btn-primary">Reserve</button>
+        <button className="button">Reserve</button>
       </Link>
     </div>
   </div>

@@ -1,4 +1,4 @@
-// C:\xampp\htdocs\agarly\frontEnd\my-react-app\SignupPage.tsx
+// SignupPage.tsx
 import React, { useState } from 'react';
 
 interface SignupForm {
@@ -69,82 +69,8 @@ const SignupPage: React.FC = () => {
         </label>
         <br />
 
-        <label>
-          First Name:
-          <input
-            type="text"
-            name="fname"
-            value={formData.fname}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-
-        <label>
-          Last Name:
-          <input
-            type="text"
-            name="lname"
-            value={formData.lname}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-
-        <label>
-          Gender:
-          <input
-            type="text"
-            name="gender"
-            value={formData.gender}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-
-        <label>
-          Confirm Password:
-          <input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-
-        <label>
-          Date of Birth:
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
+        {/* Add the rest of the form fields similar to the above example */}
+        {/* ... */}
 
         <button type="submit">Signup</button>
       </form>

@@ -25,3 +25,12 @@
 .card-title {
   color: #000; /* Black font color */
 }
+
+button {
+  background-color: #007bff; /* Blue color */
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}

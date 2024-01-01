@@ -1,4 +1,4 @@
--- Active: 1702935863877@@127.0.0.1@3306@gsff
+-- Active: 1698396764187@@localhost@3308@carrentalsystem
 -- Dummy Inserts for the 'car' table
 INSERT INTO car (plate_id, model, production_year, color, photo, category, class_id, office_id, `status`)
 VALUES
@@ -10,3 +10,9 @@ VALUES
 (6, 'HYNDAI', 2020, 'White', 'hyundai_photo.jpg', 'Sedan', 'Economy', 3, 'Active'),
 (7, 'HONDA', 2019, 'Bronze', 'honda_photo.jpg', 'Mini_Van', 'Mid-Range', 1, 'Active'),
 (8, 'KIA', 2023, 'Green', 'kia_photo.jpg', 'CrossOver', 'Luxury', 2, 'Rented');
+
+INSERT INTO customer (ssn, f_name, l_name, b_d, gender, email, pass) VALUES
+(123456789, 'John', 'Doe', '1990-01-01', 'M', 'john.doe@example.com', 'password123'),
+(987654321, 'Jane', 'Smith', '1985-05-15', 'F', 'jane.smith@example.com', 'securepass'),
+(555555555, 'Bob', 'Johnson', '1982-09-30', 'M', 'bob.johnson@example.com', 'test123');
+

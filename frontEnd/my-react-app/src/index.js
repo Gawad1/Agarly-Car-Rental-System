@@ -1,15 +1,14 @@
-// index.js (or your main entry file)
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-// import ReactDOM from 'react-dom';
-import App from './app.tsx'; // Import your main App component
+  // index.js
 
-// Import createRoot from react-dom/client
-import { createRoot } from 'react-dom/client';
+  import React from 'react';
+  import ReactDOM from 'react-dom';
+  import { createRoot } from 'react-dom/client';
+  import App from './app.tsx';
 
-// Use createRoot to render the app
-const root = document.getElementById('root');
-const rootContainer = createRoot(root);
-
-// Render the app inside the root container
-rootContainer.render(<App />);
+  const root = document.getElementById('root');
+  if (root) {
+    const appRoot = createRoot(root);
+    appRoot.render(<App />);
+  } else {
+    console.error('Root element not found');
+  }
