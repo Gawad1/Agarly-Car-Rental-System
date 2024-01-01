@@ -1,13 +1,16 @@
 // App.tsx
-
 import React from 'react';
-import CarList from './HomePage.tsx';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CarList from './CarList.tsx';
 
 const App: React.FC = () => {
   return (
-    <div>
-      <CarList />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<CarList />} />
+        {/* Add more routes as needed */}
+      </Routes>
+    </Router>
   );
 };
 

@@ -22,7 +22,7 @@ const CarList: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/api/cars');
+        const response = await axios.get('http://localhost:3001/home');
         setCars(response.data);
       } catch (error) {
         console.error('Error fetching car data', error);

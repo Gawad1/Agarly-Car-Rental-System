@@ -1,8 +1,9 @@
 const dbConfig = {
-    host: "192.168.1.8",
-    user: "useraa",
-    password: "passaa",
-    database: "gsff",
+    host: "localhost",
+    user: "root",
+    password: "@Feezo139",
+  database: "carrentalsystem",
+  port:3308
   };
   
   module.exports = dbConfig;
