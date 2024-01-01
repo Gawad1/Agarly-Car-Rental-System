@@ -51,21 +51,30 @@ const CarList: React.FC = () => {
 
   return (
     <div>
+      {/* Big Header with Animation */}
       <div className="home-header">
         <img className="header-image" src="/header.jpeg" alt="Header JPEG" />
-        <h1 className="header-text">
-          Welcome to Car Showcase, {user ? user.name : 'Guest'}
-        </h1>
-        <input
-          type="text"
-          className="form-control search-bar"
-          placeholder="Advanced Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <h1 className="header-text">Welcome to Car Showcase</h1>
       </div>
 
+      {/* Car List */}
       <div className="container mt-4">
+        <div className="row">
+          <div className="col text-center">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Advanced Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <div className="col text-right">
+            <Link to="/login" className="btn btn-primary">
+              Login
+            </Link>
+          </div>
+        </div>
         <div className="row mt-3">
           {filteredCars.map((car) => (
             <div key={car.plate_id} className="col-md-4">

@@ -1,14 +1,15 @@
 /* CarList.css */
 
-.form-container {
-  margin-top: 20px;
+
+/* CarList.css */
+.container {
+  margin-top: 50px;
 }
 
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 20px;
+.car-card {
+  width: 18rem;
 }
 
-/* Add any additional styling for the CarList page */
+.car-image {
+  max-height: 200px; /* Adjust the image size as needed */
+}
