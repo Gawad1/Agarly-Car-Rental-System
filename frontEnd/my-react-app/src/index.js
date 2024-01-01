@@ -3,7 +3,9 @@
   import React from 'react';
   import ReactDOM from 'react-dom';
   import { createRoot } from 'react-dom/client';
-  import App from './app.tsx';
+import App from './app.tsx';
+  import 'bootstrap/dist/css/bootstrap.min.css';
+
 
   const root = document.getElementById('root');
   if (root) {
