@@ -1,0 +1,36 @@
+/* CarCard.css */
+.car-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  color: #000; /* Add transition for smooth scaling effect */
+}
+
+.car-card:hover {
+  transform: scale(1.1); /* Scale up by 10% on hover */
+}
+
+.car-image {
+  max-width: 100%;
+}
+
+.card-title {
+  color: #000; /* Black font color */
+}
+
+button {
+  background-color: #007bff; /* Blue color */
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}

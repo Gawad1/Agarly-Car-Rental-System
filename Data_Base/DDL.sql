@@ -1,4 +1,5 @@
--- Active: 1698396764187@@localhost@3308@carrentalsystem
+-- Active: 1702938882061@@192.168.1.104@3306@gsff
+
 
 CREATE TABLE customer (
     ssn INT PRIMARY KEY,

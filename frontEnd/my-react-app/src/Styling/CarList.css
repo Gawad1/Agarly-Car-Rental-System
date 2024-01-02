@@ -1,0 +1,15 @@
+/* CarList.css */
+
+
+/* CarList.css */
+.container {
+  margin-top: 5px;
+}
+
+.car-card {
+  width: 18rem;
+}
+
+.car-image {
+  max-height: 200px; /* Adjust the image size as needed */
+}

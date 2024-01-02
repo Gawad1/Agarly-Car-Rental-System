@@ -1,3 +1,4 @@
+-- Active: 1698396764187@@localhost@3308@carrentalsystem
 -- Inserting dummy data into the 'class' table
 INSERT INTO class (class_id, rate) VALUES
 ('Economy', 50.00),
