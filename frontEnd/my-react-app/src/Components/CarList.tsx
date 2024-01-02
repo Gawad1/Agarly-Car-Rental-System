@@ -52,7 +52,7 @@ const CarList: React.FC = () => {
   {/* Big Header with Animation */}
   <div className="home-header">
     <img className="header-image" src="/header.jpeg" alt="Header JPEG" />
-    <h1 className="header-text">Welcome to Car Showcase</h1>
+    <h1 className="header-text">Welcome to Agarly</h1>
   </div>
 
   {/* Search bar below header */}
