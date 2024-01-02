@@ -6,7 +6,8 @@ const resPerCar = (db) => {
       const {
         reportType, // New parameter for report type
         startDate,  // New parameter for start date
-        endDate     // New parameter for end date
+        endDate,
+        plate_id    // New parameter for end date
       } = req.body;
   
       // Validate that required fields are provided
@@ -32,20 +33,20 @@ const resPerCar = (db) => {
           SELECT *
           FROM reservation
           JOIN car ON reservation.plate_id = car.plate_id
-          WHERE reservation.res_date BETWEEN ? AND ?
+          WHERE (reservation.res_date BETWEEN ? AND ?) AND car.plate_id = ?
         `;
       } else {
         res.status(400).json({ message: 'Invalid report type' });
         return;
       }
   
-      db.query(query,[startDate, endDate],(err, result) => {
+      db.query(query,[startDate, endDate ,plate_id],(err, result) => {
           if (err) {
             console.error('Error retrieving reservations', err);
             res.status(500).json({ message: 'Internal Server Error' });
             return;
           }
-  
+     
           res.json(result);
         }
       );

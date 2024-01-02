@@ -1,11 +1,12 @@
-
+const cors = require('cors');
 const express = require('express');
 const router = express.Router();
 
 const altercarRouter = (db) => {
+  router.use(cors());
   router.post('/', (req, res) => {
     const { action, plate_id } = req.body;
-
+    
     if (!action || !plate_id) {
       return res.status(400).json({ message: 'All fields are required' });
     }
