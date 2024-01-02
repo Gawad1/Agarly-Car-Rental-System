@@ -1,8 +1,8 @@
 // LoginPage.tsx
-import React, { useState } from 'react';
-import { useUser } from './UserContext.tsx';
-import { useNavigate, Link } from 'react-router-dom';
-import '../Styling/LoginPage.css';
+import React, { useState } from "react";
+import { useUser } from "./UserContext.tsx";
+import { useNavigate, Link } from "react-router-dom";
+import "../Styling/LoginPage.css";
 
 interface LoginForm {
   email: string;
@@ -14,8 +14,8 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState<LoginForm>({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -30,31 +30,34 @@ const LoginPage: React.FC = () => {
 
     // Validate required fields
     if (!formData.email || !formData.password) {
-      setErrorMessage('Please fill in all required fields.');
+      setErrorMessage("Please fill in all required fields.");
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:3001/login', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3001/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         const data = await response.json();
-        setUser({ name: data.name });
-        navigate('/home');
-        console.log('Login successful!', data);
-      } else {
-        const errorData = await response.json();
-        setErrorMessage(errorData.message);
+        if (formData.email === "admin123" && formData.password === "admin321") {
+          setUser({ name: data.name });
+          navigate("/admin-home");
+          console.log("Admin login successful!", data);
+        } else {
+          setUser({ name: data.name });
+          navigate("/home");
+          console.log("User login successful!", data);
+        }
       }
     } catch (error) {
-      console.error('Error during login:', error.message);
-      setErrorMessage('An error occurred during login.');
+      console.error("Error during login:", error.message);
+      setErrorMessage("An error occurred during login.");
     }
   };
 
@@ -85,7 +88,7 @@ const LoginPage: React.FC = () => {
           </label>
           <br />
 
-          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
           <button type="submit" className="button">
             Login

@@ -19,7 +19,6 @@ function App() {
     <Router>
       <UserProvider>
       <Routes>
-        
         <Route path="/home" element={<CarList />} />
         <Route path="/showcar/:plate_id" element={<CarDetailsWrapper />} />
         <Route path="/" element={<LoginPage />} />

@@ -24,17 +24,6 @@ const AdminHomePage: React.FC = () => {
         <Link to="/delete-car">
           <button>Delete a Car</button>
         </Link>
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Search for a customer..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
-      <div>
         <Link to="/reservations-report">
           <button>All Reservations within a Specified Period</button>
         </Link>
