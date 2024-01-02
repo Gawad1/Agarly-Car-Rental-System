@@ -1,12 +1,11 @@
 // CarList.tsx
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+
 import CarCard from './CarCard.tsx';
-import '../Styling/CarList.css';
-import '../Styling/HomeHeader.css';
-import { useUser } from './UserContext.tsx';
+import '../Styling/CarList.css'; // Import the CSS file
+import '../Styling/HomeHeader.css'; // Import the CSS file for the header
 
 interface Car {
   plate_id: number;
@@ -20,7 +19,6 @@ interface Car {
 const CarList: React.FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const { user } = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -89,4 +87,4 @@ const CarList: React.FC = () => {
   );
 };
 
-export default CarList;
+export default CarList;
