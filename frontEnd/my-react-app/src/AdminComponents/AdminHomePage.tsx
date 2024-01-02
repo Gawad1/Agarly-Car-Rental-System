@@ -1,7 +1,7 @@
 // src/AdminHomePage.tsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import '../Styling/AdminHome.css';
 const AdminHomePage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -21,20 +21,6 @@ const AdminHomePage: React.FC = () => {
         <Link to="/modify-car-status">
           <button>Modify Car Status</button>
         </Link>
-        <Link to="/delete-car">
-          <button>Delete a Car</button>
-        </Link>
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Search for a customer..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
-      <div>
         <Link to="/reservations-report">
           <button>All Reservations within a Specified Period</button>
         </Link>
