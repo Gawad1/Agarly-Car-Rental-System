@@ -3,27 +3,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const dbConfig = require('./routers/dbConfig');
-const app = express();
-app.use(bodyParser.json());
-const port = 3001;
+const cron = require('node-cron');
+const moment = require('moment');
 const cors = require('cors');
+
+const app = express();
+const port = 3001;
+
+app.use(bodyParser.json());
 app.use(cors());
-
-const homeRouter = require('./routers/HomeRouter');
-const carInsert = require('./routers/CarInsert');
-const loginfunction = require('./routers/LoginRouter');
-const carpage = require('./routers/CarPage');
-const resPerCar = require('./routers/resPerCar');
-const deletecar = require('./routers/deletecarRouter');
-const histOfCustomer = require('./routers/historyOfCustomerRouter');
-const reserverouter = require('./routers/reserveRouter');
-const searchRouter = require('./routers/searchRouter');
-const signupRouter = require('./routers/signupRouter');
-const altercarRouter = require('./routers/altercarRouter');
-const CustSearch = require('./routers/CustSearchRouter');
-const DailyPay = require('./routers/dailyPay');
-const CarStatusRouter = require('./routers/CarStatusRouter');
-
 
 // Create a single database connection
 const db = mysql.createConnection(dbConfig);
@@ -37,22 +25,76 @@ db.connect((err) => {
 });
 
 // Pass the database connection to routers
-// app.use('/car', carRouter(db));
-app.use('/home', homeRouter(db)); 
-app.use('/insertcar', carInsert(db));
-app.use('/login', loginfunction(db));
-app.use('/resPerCar', resPerCar(db));
-app.use('/showcar', carpage(db));
-app.use('/deletecar', deletecar(db));
-app.use('/historyOfCustomer', histOfCustomer(db));
-app.use('/reserveRouter', reserverouter(db));
-app.use('/searchRouter', searchRouter(db));
-app.use('/signup', signupRouter(db));
-app.use('/altercar', altercarRouter(db));
-app.use('/customerSearch', CustSearch(db));
-app.use('/dailyPay', DailyPay(db));
-app.use('/carStatus', CarStatusRouter(db));
+const homeRouter = require('./routers/HomeRouter')(db);
+const carInsert = require('./routers/CarInsert')(db);
+const loginfunction = require('./routers/LoginRouter')(db);
+const carpage = require('./routers/CarPage')(db);
+const resPerCar = require('./routers/resPerCar')(db);
+const deletecar = require('./routers/deletecarRouter')(db);
+const histOfCustomer = require('./routers/historyOfCustomerRouter')(db);
+const reserverouter = require('./routers/reserveRouter')(db);
+const searchRouter = require('./routers/searchRouter')(db);
+const signupRouter = require('./routers/signupRouter')(db);
+const altercarRouter = require('./routers/altercarRouter')(db);
+const CustSearch = require('./routers/CustSearchRouter')(db);
+const DailyPay = require('./routers/dailyPay')(db);
+const CarStatusRouter = require('./routers/CarStatusRouter')(db);
+
+app.use('/home', homeRouter);
+app.use('/insertcar', carInsert);
+app.use('/login', loginfunction);
+app.use('/resPerCar', resPerCar);
+app.use('/showcar', carpage);
+app.use('/deletecar', deletecar);
+app.use('/historyOfCustomer', histOfCustomer);
+app.use('/reserveRouter', reserverouter);
+app.use('/searchRouter', searchRouter);
+app.use('/signup', signupRouter);
+app.use('/altercar', altercarRouter);
+app.use('/customerSearch', CustSearch);
+app.use('/dailyPay', DailyPay);
+app.use('/carStatus', CarStatusRouter);
+
+async function updateCarStatus() {
+  try {
+    const currentTimestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+
+    // Query reservations with pickup date or return date <= current timestamp
+    const query = `
+    UPDATE car
+JOIN (
+    SELECT
+        reservation.plate_id,
+        MAX(reservation.pickup_date) AS latest_pickup_date,
+        MAX(reservation.return_date) AS latest_return_date
+    FROM
+        reservation
+    WHERE
+        reservation.return_date IS NOT NULL
+    GROUP BY
+        reservation.plate_id
+) AS latest_reservations ON car.plate_id = latest_reservations.plate_id
+SET car.status = CASE
+    WHEN latest_reservations.latest_pickup_date <= ? AND (reservation.return_date >= ?) THEN 'rented'
+    WHEN latest_reservations.latest_return_date <= ? THEN 'active'
+    ELSE car.status
+END;
+  `;
+  
+  await db.promise().query(query, [currentTimestamp, currentTimestamp,currentTimestamp,currentTimestamp]);
+  
+    console.log('Car statuses updated successfully.');
+  } catch (error) {
+    console.error('Error updating car statuses:', error.message);
+  }
+}
+
+// Automation
+cron.schedule('*/10 * * * * *', async () => {
+  console.log('Running car status update task...');
+  await updateCarStatus();
+});
 
 app.listen(port, () => {
-  console.log(`Server is running  on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });

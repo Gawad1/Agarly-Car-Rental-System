@@ -4,7 +4,6 @@ const router = express.Router();
 const CarStatus = (db) => {
   router.post('/', (req, res) => {
     const { date } = req.body;
- console.log("here");
     // Validate that required fields are provided
     if (!date) {
       res.status(400).json({ message: 'Missing required fields' });
