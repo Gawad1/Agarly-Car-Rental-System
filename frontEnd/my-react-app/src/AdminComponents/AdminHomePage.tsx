@@ -21,6 +21,12 @@ const AdminHomePage: React.FC = () => {
         <Link to="/modify-car-status">
           <button>Modify Car Status</button>
         </Link>
+<<<<<<< HEAD
+=======
+        <Link to="/delete-car">
+          <button>Delete a Car</button>
+        </Link>
+>>>>>>> origin/Gawaddd
         <Link to="/reservations-report">
           <button>All Reservations within a Specified Period</button>
         </Link>
