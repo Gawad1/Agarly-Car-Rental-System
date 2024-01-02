@@ -45,18 +45,20 @@ const LoginPage: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
+        console.log("here");
         
     
-        const errorData = await response.json();
-        setErrorMessage(errorData.message);
+        
+        // setErrorMessage(errorData.message);
 
+        console.log(data);
         if (formData.email === "admin123" && formData.password === "admin321") {
           setUser({ name: data.name, ssn: data.ssn  });
           navigate("/admin-home");
           console.log("Admin login successful!", data);
         }
         else {
-          const data = await response.json();
+          // const data = await response.json();
         setUser({ name: data.name, ssn: data.ssn });
         console.log(data.ssn);// Store the SSN in the context
         navigate('/home');
@@ -64,6 +66,7 @@ const LoginPage: React.FC = () => {
           
         }
       }
+
     } catch (error) {
       console.error("Error during login:", error.message);
       setErrorMessage("An error occurred during login.");

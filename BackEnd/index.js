@@ -75,11 +75,10 @@ JOIN (
         reservation.plate_id
 ) AS latest_reservations ON car.plate_id = latest_reservations.plate_id
 SET car.status = CASE
-    WHEN latest_reservations.latest_pickup_date <= ? AND (reservation.return_date >= ?) THEN 'rented'
-    WHEN latest_reservations.latest_return_date <= ? THEN 'active'
+    WHEN latest_reservations.latest_pickup_date <= ? AND (latest_reservations.latest_return_date >= ?) THEN 'Rented'
+    WHEN latest_reservations.latest_return_date <= ? THEN 'Active'
     ELSE car.status
-END;
-  `;
+END;`;
   
   await db.promise().query(query, [currentTimestamp, currentTimestamp,currentTimestamp,currentTimestamp]);
   
