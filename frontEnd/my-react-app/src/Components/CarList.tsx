@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import CarCard from './CarCard.tsx';
-import '../Styling/CarList.css'; // Import the CSS file
-import '../Styling/HomeHeader.css'; // Import the CSS file for the header
+import '../Styling/CarList.css';
+import '../Styling/HomeHeader.css';
 
 interface Car {
   plate_id: number;
@@ -48,32 +48,31 @@ const CarList: React.FC = () => {
   const filteredCars = cars.filter((car) => handleSearch(car, searchTerm));
 
   return (
-    <div>
-      {/* Big Header with Animation */}
-      <div className="home-header">
-        <img className="header-image" src="/header.jpeg" alt="Header JPEG" />
-        <h1 className="header-text">Welcome to Car Showcase</h1>
-      </div>
+<div>
+  {/* Big Header with Animation */}
+  <div className="home-header">
+    <img className="header-image" src="/header.jpeg" alt="Header JPEG" />
+    <h1 className="header-text">Welcome to Car Showcase</h1>
+  </div>
 
-      {/* Car List */}
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col text-center">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Advanced Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          <div className="col text-right">
-            <Link to="/login" className="btn btn-primary">
-              Login
-            </Link>
-          </div>
-        </div>
-        <div className="row mt-3">
+  {/* Search bar below header */}
+  <div className="container">
+    <div className="row">
+      <div className="col text-center">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Advanced Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+    </div>
+  </div>
+
+  {/* Car List */}
+    <div className="container">
+        <div className="row ">
           {filteredCars.map((car) => (
             <div key={car.plate_id} className="col-md-4">
               <Link to={`/showcar/${car.plate_id}`}>
@@ -81,9 +80,10 @@ const CarList: React.FC = () => {
               </Link>
             </div>
           ))}
-        </div>
+</div>
       </div>
-    </div>
+      </div>
+
   );
 };
 
