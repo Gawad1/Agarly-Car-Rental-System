@@ -8,6 +8,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
+  margin-bottom: 10px; /* Adjust as needed */
 }
 
 .header-image {
