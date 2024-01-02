@@ -26,7 +26,7 @@ const signupRouter = (db) => {
     }
 
     // Insert user data into the database
-    const insertQuery = 'INSERT INTO Customer (ssn, f_name, l_name, gender, email, pass, b_d) VALUES (?, ?, ?, ?, ?, ?)';
+    const insertQuery = 'INSERT INTO Customer (ssn, f_name, l_name, gender, email, pass, b_d) VALUES (?, ?, ?, ?, ?, ?,?)';
     db.query(insertQuery, [SSN, Fname, Lname, gender, email, password, date], (err, results) => {
       if (err) {
         console.error('Error inserting into the database:', err);
