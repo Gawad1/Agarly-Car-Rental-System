@@ -45,7 +45,7 @@ app.use('/resPerCar', resPerCar(db));
 app.use('/showcar', carpage(db));
 app.use('/deletecar', deletecar(db));
 app.use('/historyOfCustomer', histOfCustomer(db));
-app.use('/reserveRouter', reserverouter(db));
+app.use('/reserve', reserverouter(db));
 app.use('/searchRouter', searchRouter(db));
 app.use('/signup', signupRouter(db));
 app.use('/altercar', altercarRouter(db));

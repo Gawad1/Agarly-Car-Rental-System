@@ -22,8 +22,7 @@ const LoginRouter = (db) => {
       // Check if the user exists and the password is correct
       const user = results[0];
       if (user && user.pass === password) {
-        res.json({ message: 'Login successful' });
-      }
+res.json({ message: 'Login successful', name: user.name, ssn: user.ssn });      }
       else {
         res.status(401).json({ message: 'Invalid credentials' });
       

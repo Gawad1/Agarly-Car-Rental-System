@@ -10,6 +10,7 @@ export interface CarSpecs {
   class_id: number;
   office_id: number;
   status: string;
+  rate: number;
 }
 
 export interface Reservation {

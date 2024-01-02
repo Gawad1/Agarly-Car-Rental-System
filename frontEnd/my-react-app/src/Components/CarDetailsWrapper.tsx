@@ -1,5 +1,3 @@
-// CarDetailsWrapper.tsx
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import CarDetails from './CarDetails.tsx';
@@ -12,7 +10,12 @@ const CarDetailsWrapper: React.FC = () => {
     return <p>Invalid URL</p>;
   }
 
-  return <CarDetails plate_id={plate_id} />;
+  return (
+    <div>
+      <h1>Car Details Page</h1>
+      <CarDetails plate_id={plate_id} />
+    </div>
+  );
 };
 
 export default CarDetailsWrapper;

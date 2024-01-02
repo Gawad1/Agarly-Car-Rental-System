@@ -6,7 +6,7 @@ const router = express.Router();
 // Accept the database connection as a parameter
 const homeRouter = (db) => {
   router.get('/', (req, res) => {
-    const query = 'SELECT * FROM car where status!="NA" ';
+    const query = 'SELECT car.*,class.rate FROM car join class on car.class_id=class.class_id where status!="NA" ';
 
     db.query(query, (err, result) => {
       if (err)

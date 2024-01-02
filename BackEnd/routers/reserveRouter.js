@@ -3,6 +3,7 @@ const router = express.Router();
 
 const reserverouter = (db) => {
   router.post("/", (req, res) => {
+    console.log(req.body);
     const {
       ssn,
       plate_id,

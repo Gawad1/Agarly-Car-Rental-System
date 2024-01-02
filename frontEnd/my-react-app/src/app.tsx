@@ -13,7 +13,6 @@ import ReservationsReport2 from './AdminComponents/resoffromto.tsx';
 import InsertCar from './AdminComponents/CarInsertForm.tsx';
 import DailyPaymentsReport from './AdminComponents/dailyPayments.tsx';
 import CustomerDetails from './AdminComponents/custSearch.tsx';
-
 function App() {
   return (
     <Router>

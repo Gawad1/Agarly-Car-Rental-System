@@ -1,4 +1,3 @@
-// LoginPage.tsx
 import React, { useState } from 'react';
 import { useUser } from './UserContext.tsx';
 import { useNavigate, Link } from 'react-router-dom';
@@ -45,7 +44,8 @@ const LoginPage: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setUser({ name: data.name });
+        setUser({ name: data.name, ssn: data.ssn });
+        console.log(data.ssn);// Store the SSN in the context
         navigate('/home');
         console.log('Login successful!', data);
       } else {

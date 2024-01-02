@@ -1,0 +1,65 @@
+/* Overall styling */
+.car-details-container {
+  width: 80%; /* Adjust as needed */
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Car image */
+.car-image {
+  width: 100%;
+  height: 300px; /* Adjust as needed */
+  object-fit: cover; /* Maintain aspect ratio */
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* .car-details-container {
+  
+  background-image: url('C:\xampp\htdocs\Final_Project\agarly\frontEnd\my-react-app\public\headerImage.jpg'); /
+  background-size: cover;
+  background-position: center;
+} */
+
+
+/* Text content */
+.car-info p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* Reservation section */
+.reservation-section {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+/* Button styling */
+.reserve-button {
+  background-color: #007bff; /* Blue color */
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px; /* Smaller size */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.reserve-button:hover {
+  background-color: #0062cc; /* Darker blue on hover */
+}
+
+/* Animation classes (using Animate.css for example) */
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1;}}

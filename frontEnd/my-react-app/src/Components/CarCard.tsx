@@ -1,4 +1,3 @@
-// CarCard.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../Styling/CarCard.css'; // Import the CSS file
@@ -11,6 +10,7 @@ interface CarCardProps {
     color: string;
     photo: string;
     category: string;
+    rate: number; // Add the price property
   };
 }
 
@@ -21,6 +21,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => (
       <p className="card-title">{`${car.model} - ${car.color}`}</p>
       <p>{`Year: ${car.production_year}`}</p>
       <p>{`Category: ${car.category}`}</p>
+      <p>{`Price: $${car.rate}`}</p> {/* Display the price information */}
       <Link to={`/showcar/${car.plate_id}`}>
         <button className="button">Reserve</button>
       </Link>

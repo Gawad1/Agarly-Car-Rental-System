@@ -9,8 +9,8 @@ const carpage = (db) => {
     // Use the plateId in your database query
     //const query = 'SELECT * FROM car WHERE plate_id = ?';
     const query = `
-  SELECT car.*, reservation.pickup_date, reservation.return_date
-  FROM car  LEFT JOIN reservation ON car.plate_id = reservation.plate_id
+  SELECT car.*,class.rate,reservation.pickup_date, reservation.return_date
+  FROM car JOIN class ON car.class_id = class.class_id  LEFT JOIN reservation ON car.plate_id = reservation.plate_id
   where car.plate_id =?;
 `;
     db.query(query, [plateId], (err, result) => {
@@ -18,7 +18,7 @@ const carpage = (db) => {
         res.status(500).json({ message: 'Error retrieving car data' });
         return;
       }
-      console.log(plateId);
+      console.log(result);
       if (result.length === 0) {
         res.status(404).json({ message: 'Car not found' });
         return;
@@ -34,6 +34,7 @@ const carpage = (db) => {
         class_id: result[0].class_id,
         office_id: result[0].office_id,
         status: result[0].status,
+        rate: result[0].rate
       };
       const reservations = result.map((reservation) => ({
         pickup_date: reservation.pickup_date,
