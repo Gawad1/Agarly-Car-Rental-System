@@ -6,13 +6,13 @@ import CarDetailsWrapper from './Components/CarDetailsWrapper.tsx';
 import LoginPage from './Components/LoginPage.tsx';
 import SignupPage from './Components/SignupPage.tsx'; // Import SignupPage
 import { UserProvider } from './Components/UserContext.tsx';
-import AdminHomePage from './AdminHomePage.tsx';
-import ModifyCarStatusPage from './modifyCarStatusPage.tsx'; // Correct import
-import ReservationsReport1 from './Allresfromto.tsx'; // Import the ReservationsReport component
-import ReservationsReport2 from './resoffromto.tsx'; 
-import InsertCar from './CarInsertForm.tsx';
-import DailyPaymentsReport from './dailyPayments.tsx';
-import CustomerDetails from './custSearch.tsx';
+import AdminHomePage from './AdminComponents/AdminHomePage.tsx';
+import ModifyCarStatusPage from './AdminComponents/modifyCarStatusPage.tsx'; // Correct import
+import ReservationsReport1 from './AdminComponents/Allresfromto.tsx'; // Import the ReservationsReport component
+import ReservationsReport2 from './AdminComponents/resoffromto.tsx'; 
+import InsertCar from './AdminComponents/CarInsertForm.tsx';
+import DailyPaymentsReport from './AdminComponents/dailyPayments.tsx';
+import CustomerDetails from './AdminComponents/custSearch.tsx';
 
 function App() {
   return (
