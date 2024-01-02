@@ -13,6 +13,7 @@ import ReservationsReport2 from './AdminComponents/resoffromto.tsx';
 import InsertCar from './AdminComponents/CarInsertForm.tsx';
 import DailyPaymentsReport from './AdminComponents/dailyPayments.tsx';
 import CustomerDetails from './AdminComponents/custSearch.tsx';
+import DailyCarStatusReport from './AdminComponents/CarsStatusOn.tsx';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/car-reservations" element={<ReservationsReport2 />} />
         <Route path="/insert-car" element={<InsertCar />} />
         <Route path="/daily-payments" element={<DailyPaymentsReport />} />
+        <Route path="/cars-status-day" element={<DailyCarStatusReport />} />
         <Route path="/customer-reservations" element={<CustomerDetails />} />
         <Route path="/reservations-report" element={<ReservationsReport1 />} /> {/* Add the route for ReservationsReport */}
         

@@ -4,7 +4,7 @@ const router = express.Router();
 const CarStatus = (db) => {
   router.post('/', (req, res) => {
     const { date } = req.body;
-
+ console.log("here");
     // Validate that required fields are provided
     if (!date) {
       res.status(400).json({ message: 'Missing required fields' });
@@ -24,7 +24,6 @@ const CarStatus = (db) => {
       LEFT JOIN servicelog as slog ON c.plate_id = slog.plate_id AND ? >= slog.start_date AND ? <= COALESCE(slog.end_date, ?)`;
 
     const params = [date, date, date, date, date];
-
     db.query(query, params, (err, result) => {
       if (err) {
         console.error('Error retrieving car status', err);
