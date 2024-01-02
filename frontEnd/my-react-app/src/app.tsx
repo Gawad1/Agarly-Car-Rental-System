@@ -17,7 +17,9 @@ import CustomerDetails from './AdminComponents/custSearch.tsx';
 function App() {
   return (
     <Router>
+      <UserProvider>
       <Routes>
+        
         <Route path="/home" element={<CarList />} />
         <Route path="/showcar/:plate_id" element={<CarDetailsWrapper />} />
         <Route path="/" element={<LoginPage />} />
@@ -31,7 +33,9 @@ function App() {
         <Route path="/reservations-report" element={<ReservationsReport1 />} /> {/* Add the route for ReservationsReport */}
         
         {/* Add other routes as needed */}
+      
       </Routes>
+      </UserProvider>
       </Router>
       );
 
