@@ -56,7 +56,7 @@ const CarList: React.FC = () => {
   </div>
 
   {/* Search bar below header */}
-  <div className="container">
+  
     <div className="row">
       <div className="col text-center">
         <input
@@ -68,7 +68,7 @@ const CarList: React.FC = () => {
         />
       </div>
     </div>
-  </div>
+  
 
   {/* Car List */}
     <div className="container">
