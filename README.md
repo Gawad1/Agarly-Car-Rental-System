@@ -40,7 +40,7 @@ To run the Agarly Car Rental System locally, follow these steps:
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/yourusername/agarly-car-rental.git
+   git clone https://github.com/Gawad1/agarly-car-rental.git
 Navigate to the Project Directory:
 bash
 Copy code
